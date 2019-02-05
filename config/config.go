@@ -7,10 +7,12 @@ import (
 )
 
 type Config struct {
-	IapHost     string        `mapstructure:"iap_host"`
-	LoggerLevel string        `mapstructure:"logger_level"`
-	SentryDSN   string        `mapstructure:"sentry_dsn"`
-	RefreshTime time.Duration `mapstructure:"refresh_time"`
+	IapHost                   string        `mapstructure:"iap_host"`
+	ServiceAccountCredentials string        `mapstructure:"service_account_credentials"`
+	ClientID                  string        `mapstructure:"client_id"`
+	LoggerLevel               string        `mapstructure:"logger_level"`
+	SentryDSN                 string        `mapstructure:"sentry_dsn"`
+	RefreshTime               time.Duration `mapstructure:"refresh_time"`
 }
 
 func Load() (Config, error) {
