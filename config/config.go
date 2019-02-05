@@ -12,7 +12,8 @@ type Config struct {
 	ClientID                  string        `mapstructure:"client_id"`
 	LoggerLevel               string        `mapstructure:"logger_level"`
 	SentryDSN                 string        `mapstructure:"sentry_dsn"`
-	RefreshTime               time.Duration `mapstructure:"refresh_time"`
+	RefreshTimeSeconds        time.Duration `mapstructure:"refresh_time_seconds"`
+	Port                      string        `mapstructure:"port"`
 }
 
 func Load() (Config, error) {
