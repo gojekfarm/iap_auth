@@ -24,7 +24,8 @@ jobs:
       - run:
           name: Run tests
           command: |
-            make test
+            go mod verify
+            make
       - run:
           name: Docker Build
           command: |
