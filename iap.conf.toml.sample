@@ -1,1 +1,5 @@
-iap_host = "http://localhost"
+iap_host = "https://blah.io"
+service_account_credentials = "blah.json"
+client_id = "blah.apps.googleusercontent.com"
+port = 8080
+refresh_time_seconds = "3600s"

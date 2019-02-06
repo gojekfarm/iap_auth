@@ -25,7 +25,7 @@ jobs:
           name: Run tests
           command: |
             env GO111MODULE=on go mod verify
-            env GO111MODULE=on make
+            env GO111MODULE=on CGO_ENABLED=0 make
       - run:
           name: Docker Build
           command: |

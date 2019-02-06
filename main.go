@@ -16,8 +16,13 @@ import (
 
 func main() {
 	cfg, err := config.Load()
-
-	ticker := time.NewTicker(cfg.RefreshTimeSeconds * time.Second)
+	fmt.Println(cfg.RefreshTimeSeconds)
+	tickPeriod, err := time.ParseDuration(cfg.RefreshTimeSeconds)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	ticker := time.NewTicker(tickPeriod)
 	var mu sync.Mutex
 
 	var atomictoken atomic.Value
