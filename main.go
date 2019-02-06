@@ -36,7 +36,7 @@ func main() {
 	}
 	atomictoken.Store(tokenfn())
 	go func() {
-		for t := range ticker.C {
+		for range ticker.C {
 			mu.Lock()
 			atomictoken.Store(tokenfn())
 			mu.Unlock()
