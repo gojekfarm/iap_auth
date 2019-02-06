@@ -30,10 +30,10 @@ jobs:
           name: Docker Build
           command: |
             TAG=0.1.0-$CIRCLE_SHA1
-            docker build -t gojektech/iap_auth:$TAG .
+            docker build -t gojektech/iap-auth:$TAG .
       - run:
           name: Docker Publish
           command: |
             TAG=0.1.0-$CIRCLE_SHA1
             docker login -u $DOCKER_USER -p $DOCKER_PASS
-            docker push gojektech/iap_auth:$TAG
+            docker push gojektech/iap-auth:$TAG
