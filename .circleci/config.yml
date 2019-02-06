@@ -1,0 +1,38 @@
+version: 2
+jobs:
+  build:
+    working_directory: /go/src/github.com/CircleCI-Public/iap_auth
+    docker:
+      - image: circleci/golang:1.11
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - restore_cache:
+          keys:
+          - vendor-pkg-{{ checksum "go.sum" }}
+          - vendor-pkg-
+      - run:
+          name: Install Dependencies
+          command: |
+            make setup
+      - save_cache:
+          paths:
+            - ./vendor
+            - "/go/pkg"
+          key: vendor-pkg-{{ checksum "go.sum" }}
+      - run:
+          name: Run tests
+          command: |
+            make test
+      - run:
+          name: Docker Build
+          command: |
+            TAG=0.1.0-$CIRCLE_SHA1
+            docker build -t gojektech/iap_auth:$TAG .
+      - run:
+          name: Docker Publish
+          command: |
+            TAG=0.1.0-$CIRCLE_SHA1
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker push gojektech/iap_auth:$TAG

@@ -1,0 +1,11 @@
+FROM alpine:3.9
+
+ADD ./out/iap_auth .
+
+ENV PORT=8081 \
+	LOG_LEVEL=INFO \
+	IAP_HOST= \
+	SERVICE_ACCOUNT_CREDENTIALS= \
+	CLIENT_ID=
+EXPOSE ${PORT}
+CMD ./iap_auth
