@@ -7,11 +7,13 @@ import (
 	"sync/atomic"
 	"testing"
 
+	"github.com/gojektech/iap_auth/pkg/logger"
 	"github.com/gojektech/iap_auth/pkg/proxy"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestShouldReverseProxyToGivenUrlWithAuthorizationHeaders(t *testing.T) {
+	logger.SetupLogger("debug")
 	backend := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte(r.Header.Get("Authorization")))
 		w.WriteHeader(200)
