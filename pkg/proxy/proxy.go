@@ -43,6 +43,7 @@ func (prx *proxy) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
 	logger.Debugf("injecting token %s", fmt.Sprintf("Bearer %s", token))
 	req.Host = prx.Backend.URL().Host
 	req.URL.Scheme = prx.Backend.URL().Scheme
+	logger.Debugf("Request URL  %s", req.URL)
 	req.Header.Set("Host", prx.Address())
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", token))
 	prx.Backend.ServeHTTP(rw, req)
