@@ -5,6 +5,8 @@ import (
 	"net/http"
 	"net/url"
 	"sync/atomic"
+
+	"github.com/gojektech/iap_auth/pkg/logger"
 )
 
 type Proxy interface {
@@ -38,7 +40,7 @@ func (prx *proxy) Address() string {
 
 func (prx *proxy) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
 	token := prx.AtomicToken.Load().(string)
-	fmt.Println(fmt.Sprintf("Bearer %s", token))
+	logger.Debugf("injecting token %s", fmt.Sprintf("Bearer %s", token))
 	req.Host = prx.Backend.URL().Host
 	req.URL.Scheme = prx.Backend.URL().Scheme
 	req.Header.Set("Host", prx.Address())

@@ -3,6 +3,7 @@ module github.com/gojektech/iap_auth
 require (
 	github.com/asaskevich/govalidator v0.0.0-20180720115003-f9ffefc3facf
 	github.com/golang/lint v0.0.0-20181217174547-8f45f776aaf1 // indirect
+	github.com/sirupsen/logrus v1.3.0
 	github.com/spf13/viper v1.3.1
 	github.com/stretchr/testify v1.2.2
 	golang.org/x/lint v0.0.0-20181217174547-8f45f776aaf1 // indirect
