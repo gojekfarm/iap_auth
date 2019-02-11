@@ -1,7 +1,15 @@
 # IAP Auth  [![CircleCI](https://circleci.com/gh/gojekfarm/iap_auth.svg?style=svg)](https://circleci.com/gh/gojekfarm/iap_auth)
 
 ## IAP Enabled Google Load Balancer
-https://cloud.google.com/iap/
+IAP: [Identity Aware Proxy] (https://cloud.google.com/iap/)
+Read more about IAP here https://cloud.google.com/blog/products/identity-security/protecting-your-cloud-vms-with-cloud-iap-context-aware-access-controls
+
+### TLDR;
+1. Setup an https Google load balancer
+2. Enable IAP (Security > Identity Aware Proxy)
+   All eligible proxies will be listed here. IAP toggle will enable Oauth Bearer token based auth.
+3. After enabling and selecting this you can add previously created service accounts to this proxy. 
+4. Download this service account credentials and configure as a param in in install
 
 ## Install as a Service
 
