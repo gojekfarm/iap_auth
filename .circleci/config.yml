@@ -48,6 +48,10 @@ jobs:
             - "/go/pkg"
           key: vendor-pkg-{{ checksum "go.sum" }}
       - run:
+          name: Release go binary
+          command: |
+            curl -sL https://git.io/goreleaser | bash
+      - run:
           name: Docker Build
           command: |
             TAG=0.1.0-$CIRCLE_SHA1
@@ -58,10 +62,6 @@ jobs:
             TAG=0.1.0-$CIRCLE_SHA1
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker push gojektech/iap-auth:$TAG
-      - run:
-          name: Release go binary
-          command: |
-            curl -sL https://git.io/goreleaser | bash
 workflows:
   version: 2
   build_and_test:
