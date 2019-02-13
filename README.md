@@ -8,7 +8,7 @@ Read more about IAP here https://cloud.google.com/blog/products/identity-securit
 1. Setup an https Google load balancer
 2. Enable IAP (Security > Identity Aware Proxy)
    All eligible proxies will be listed here. IAP toggle will enable Oauth Bearer token based auth.
-3. After enabling and selecting this you can add previously created service accounts to this proxy. 
+3. After enabling and selecting this you can add previously created service accounts to this proxy.
 4. Download this service account credentials and configure as a param in in install
 
 ## Install as a Service
@@ -22,5 +22,39 @@ Read more about IAP here https://cloud.google.com/blog/products/identity-securit
 
 `helm install gojektech-incubator/iap-auth --name=some-svc-iap --set iapHost=https://somehost,clientId=someclientid,secretName=some-svc-sa-creds`
 
+## Dev setup
+
+For go1.11, you need an environment variable set to enable [go modules](https://github.com/golang/go/wiki/Modules)
+
+```
+$ export GO111MODULE=on
+```
+
+Assuming you are in the directory `iap_auth`
+
+### Running the tests
+
+```
+$ make setup
+$ make test
+```
+
+### Building the binary
+
+```
+$ make build
+# the compiled binary would be inside iap_auth/out/
+
+```
+
+### Running the binary
+
+```
+$ make copy-config
+$ make setup
+$ ./out/iap_auth server
+```
 
 ## Install as a Sidecar
+
+TODO
