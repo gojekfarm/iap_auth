@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  test:
     working_directory: /go/src/github.com/CircleCI-Public/iap_auth
     docker:
       - image: circleci/golang:1.11
@@ -26,6 +26,27 @@ jobs:
           command: |
             env GO111MODULE=on go mod verify
             env GO111MODULE=on CGO_ENABLED=0 make
+  release:
+    working_directory: /go/src/github.com/CircleCI-Public/iap_auth
+    docker:
+      - image: circleci/golang:1.11
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - restore_cache:
+          keys:
+          - vendor-pkg-{{ checksum "go.sum" }}
+          - vendor-pkg-
+      - run:
+          name: Install Dependencies
+          command: |
+            make setup
+      - save_cache:
+          paths:
+            - ./vendor
+            - "/go/pkg"
+          key: vendor-pkg-{{ checksum "go.sum" }}
       - run:
           name: Docker Build
           command: |
@@ -37,3 +58,20 @@ jobs:
             TAG=0.1.0-$CIRCLE_SHA1
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker push gojektech/iap-auth:$TAG
+      - run:
+          name: Release go binary
+          command: |
+            curl -sL https://git.io/goreleaser | bash
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - test
+      - release:
+          requires:
+            - test
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*(-.*)*/
