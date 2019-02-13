@@ -50,7 +50,7 @@ jobs:
       - run:
           name: Release go binary
           command: |
-            make build
+            make
             curl -sL https://git.io/goreleaser | bash
       - run:
           name: Docker Build
