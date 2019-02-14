@@ -1,7 +1,7 @@
 version: 2
 jobs:
   test:
-    working_directory: /go/src/github.com/CircleCI-Public/iap_auth
+    working_directory: /go/src/github.com/tasdikrahman/iap_auth
     docker:
       - image: circleci/golang:1.11
     steps:
@@ -27,7 +27,7 @@ jobs:
             env GO111MODULE=on go mod verify
             env GO111MODULE=on CGO_ENABLED=0 make
   release:
-    working_directory: /go/src/github.com/CircleCI-Public/iap_auth
+    working_directory: /go/src/github.com/tasdikrahman/iap_auth
     docker:
       - image: circleci/golang:1.11
     steps:
@@ -52,6 +52,7 @@ jobs:
           command: |
             env GO111MODULE=on go mod verify
             env GO111MODULE=on CGO_ENABLED=0 make
+            env GO111MODULE=on CGO_ENABLED=0 go get -u
             curl -sL https://git.io/goreleaser | bash
       - run:
           name: Docker Build
