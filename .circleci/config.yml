@@ -52,8 +52,6 @@ jobs:
           command: |
             env GO111MODULE=on go mod verify
             env GO111MODULE=on CGO_ENABLED=0 make
-            cd /usr/local/go/src/github.com/gojektech/
-            git clone git@github.com:tasdikrahman/iap_auth
             curl -sL https://git.io/goreleaser | bash
       - run:
           name: Docker Build
