@@ -50,9 +50,6 @@ jobs:
       - run:
           name: Release go binary
           command: |
-            env GO111MODULE=on go mod verify
-            env GO111MODULE=on CGO_ENABLED=0 make
-            env GO111MODULE=on CGO_ENABLED=0 go get -u
             curl -sL https://git.io/goreleaser | bash
       - run:
           name: Docker Build
