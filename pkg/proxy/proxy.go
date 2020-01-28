@@ -6,7 +6,7 @@ import (
 	"net/url"
 	"sync/atomic"
 
-	"github.com/gojektech/iap_auth/pkg/logger"
+	"github.com/gojekfarm/iap_auth/pkg/logger"
 )
 
 type Proxy interface {

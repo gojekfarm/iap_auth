@@ -7,8 +7,8 @@ import (
 	"sync/atomic"
 	"testing"
 
-	"github.com/gojektech/iap_auth/pkg/logger"
-	"github.com/gojektech/iap_auth/pkg/proxy"
+	"github.com/gojekfarm/iap_auth/pkg/logger"
+	"github.com/gojekfarm/iap_auth/pkg/proxy"
 	"github.com/stretchr/testify/assert"
 )
 

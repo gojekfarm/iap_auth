@@ -8,10 +8,10 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/gojektech/iap_auth/config"
-	"github.com/gojektech/iap_auth/pkg/iap"
-	"github.com/gojektech/iap_auth/pkg/logger"
-	"github.com/gojektech/iap_auth/pkg/proxy"
+	"github.com/gojekfarm/iap_auth/config"
+	"github.com/gojekfarm/iap_auth/pkg/iap"
+	"github.com/gojekfarm/iap_auth/pkg/logger"
+	"github.com/gojekfarm/iap_auth/pkg/proxy"
 	"golang.org/x/oauth2"
 )
 

@@ -5,9 +5,9 @@ import (
 	"net/http"
 
 	"github.com/asaskevich/govalidator"
-	"github.com/gojektech/iap_auth/pkg/jws"
-	"github.com/gojektech/iap_auth/pkg/pkey"
-	"github.com/gojektech/iap_auth/pkg/token"
+	"github.com/gojekfarm/iap_auth/pkg/jws"
+	"github.com/gojekfarm/iap_auth/pkg/pkey"
+	"github.com/gojekfarm/iap_auth/pkg/token"
 	"golang.org/x/oauth2/google"
 )
 
